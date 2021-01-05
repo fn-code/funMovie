@@ -56,6 +56,6 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "org.mockito:mockito-inline:$mockito_kotlin_version"
+    implementation "org.mockito:mockito-inline:$mockito_kotlin_inline_version"
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }

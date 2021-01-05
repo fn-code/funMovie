@@ -28,6 +28,7 @@ buildscript {
     ext.idle_resource_version = '3.2.0'
     ext.mockito_version = '2.23.4'
     ext.mockito_kotlin_version = '2.1.0'
+    ext.mockito_kotlin_inline_version = '3.4.0'
     ext.arch_lifecycle_version = '2.1.0'
     ext.paging_version = '2.1.2'
     ext.hilt_version = '2.28-alpha'

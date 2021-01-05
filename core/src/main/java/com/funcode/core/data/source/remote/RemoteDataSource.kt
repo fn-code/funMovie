@@ -33,7 +33,7 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) {
             } catch (e: Exception) {
                 EspressoIdlingResource.decrement()
                 emit(ApiResponse.Error(e.toString()))
-                Log.e("RemoteDataSource", e.toString())
+                Log.e("RemoteDataSources", e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }
@@ -53,7 +53,7 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService) {
             } catch (e: Exception) {
                 EspressoIdlingResource.decrement()
                 emit(ApiResponse.Error(e.toString()))
-                Log.e("RemoteDataSource", e.toString())
+                Log.e("RemoteDataSources", e.toString())
             }
         }.flowOn(Dispatchers.IO)
     }

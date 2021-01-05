@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">funMovie</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="the_movie">The Movie</string>
+    <string name="tv_released">Released -</string>
+    <string name="tv_rating">Rating 4.0</string>
+    <string name="movie">Movie</string>
+    <string name="tvshow">Tv Show</string>
+    <string name="tv_exam_genre">-</string>
+    <string name="tv_description">Description :</string>
+    <string name="no_message">No Message</string>
+    <string name="muat_lagi">Muat Lagi</string>
+    <string name="dashboard_bottom_nav">Dashboard</string>
+    <string name="favorite_bottom_nav">Favorite</string>
+    <string name="movie_tab_title">Movie</string>
+    <string name="tvshow_tab_title">Tv Show</string>
+    <string name="detail_btn_favorite">Favorite</string>
+    <string name="welcome_message">SELAMAT DATANG</string>
+    <string name="title_favorite">Favorite Film</string>
+    <string name="developer_name">Khairudin Firdaus Nento</string>
+    <string name="developer_address">Indonesia - Gorontalo</string>
+    <string name="developer_fb">ludin.nento</string>
+    <string name="developer_github">fn-code</string>
+    <string name="developer_mail">ludin.nento.app@gmail.com</string>
+    <string name="developer_sosial_media">SOSIAL MEDIA</string>
+    <string name="profile_bottom_nav">Profile</string>
+</resources>

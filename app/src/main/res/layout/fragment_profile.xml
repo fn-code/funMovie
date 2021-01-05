@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".home.content.ProfileFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_photo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/profil"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:layout_below="@+id/img_photo"
+            android:id="@+id/tx_name"
+            android:textStyle="bold"
+            android:textSize="8pt"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/developer_name" />
+
+        <TextView
+            android:layout_below="@+id/tx_name"
+            android:id="@+id/tx_alamat"
+            android:textSize="6pt"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/developer_address" />
+
+
+        <TextView
+            android:layout_below="@+id/tx_alamat"
+            android:id="@+id/tx_sosial_media"
+            android:textSize="6pt"
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"
+            android:text="@string/developer_sosial_media" />
+
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/tx_sosial_media"
+            android:id="@+id/facebook_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/facebook"/>
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="8pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/developer_fb"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_below="@id/facebook_section"
+            android:id="@+id/github_section"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/github"/>
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="8pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/developer_github"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@id/github_section"
+            android:id="@+id/mail_section"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/mail"/>
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="8pt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/developer_mail"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

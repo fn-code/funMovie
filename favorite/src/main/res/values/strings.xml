@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="the_movie">The Movie</string>
+    <string name="tv_released">Released -</string>
+    <string name="tv_rating">Rating 4.0</string>
+    <string name="no_message">No Message</string>
+    <string name="muat_lagi">Muat Lagi</string>
+    <string name="btn_item_favorite">Favorite</string>
+</resources>

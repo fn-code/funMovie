@@ -7,15 +7,18 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.funcode.funmovie.R
+import com.funcode.funmovie.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_home.*
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity(){
+    private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         configureAppBar()
         val host: NavHostFragment = supportFragmentManager
@@ -27,8 +30,8 @@ class HomeActivity : AppCompatActivity(){
     }
 
     private fun configureAppBar() {
-        setSupportActionBar(topAppBar)
-        topAppBar.elevation = 0f
+        setSupportActionBar(binding.topAppBar)
+        binding.topAppBar.elevation = 0f
         supportActionBar?.customView?.elevation = 0f
         supportActionBar?.elevation = 0f
         supportActionBar?.setDisplayShowTitleEnabled(false)

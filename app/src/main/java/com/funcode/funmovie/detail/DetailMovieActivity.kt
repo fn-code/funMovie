@@ -7,16 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.funcode.core.domain.model.Film
 import com.funcode.funmovie.R
+import com.funcode.funmovie.databinding.ActivityDetailMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_detail_movie.*
-import kotlinx.android.synthetic.main.activity_detail_movie.message_view
-import kotlinx.android.synthetic.main.activity_detail_movie.progress_bar
-import kotlinx.android.synthetic.main.message.*
 
 @AndroidEntryPoint
 class DetailMovieActivity : AppCompatActivity() {
@@ -24,12 +20,15 @@ class DetailMovieActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_FILM = "extra_film"
     }
-
     private val detailViewModel: DetailViewModel by viewModels()
     private var menu: Menu? = null
+    private lateinit var binding: ActivityDetailMovieBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_movie)
+        binding = ActivityDetailMovieBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val extras = intent.extras
         if (extras != null) {
@@ -37,13 +36,13 @@ class DetailMovieActivity : AppCompatActivity() {
             detailViewModel.setSelectedFilm(filmid)
             detailViewModel.film.observe(this, { film ->
                 if (film == null) {
-                    scrollView.visibility = View.GONE
-                    progress_bar.visibility = View.GONE
-                    message_view.visibility = View.VISIBLE
-                    tv_message.text = "Gagal menampilkan daftar film"
+                    binding.scrollView.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                    binding.messageView.lnMessage.visibility = View.VISIBLE
+                    binding.messageView.tvMessage.text = "Gagal menampilkan daftar film"
                 } else {
-                    progress_bar.visibility = View.GONE
-                    scrollView.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.scrollView.visibility = View.VISIBLE
                     populateFilm(film)
                 }
             })
@@ -57,12 +56,12 @@ class DetailMovieActivity : AppCompatActivity() {
                 RequestOptions.placeholderOf(R.drawable.ic_loading)
                     .error(R.drawable.ic_loading)
             )
-            .into(img_poster)
+            .into(binding.imgPoster)
 
-        rating.text = "Rating ${film.voteAverage}"
-        film_title.text = film.title
-        film_released.text = "Released ${film.releaseDate}"
-        film_desc.text = film.overview
+        binding.rating.text = "Rating ${film.voteAverage}"
+        binding.filmTitle.text = film.title
+        binding.filmReleased.text = "Released ${film.releaseDate}"
+        binding.filmDesc.text = film.overview
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -6,16 +6,21 @@ import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.funcode.funmovie.favorite.adapter.SectionFavoritePagerAdapter
-import kotlinx.android.synthetic.main.activity_favorite.*
+import com.funcode.funmovie.favorite.databinding.ActivityFavoriteBinding
 
 class FavoriteActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityFavoriteBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val sectionPager = SectionFavoritePagerAdapter(supportFragmentManager)
-        favorite_viewpager.adapter = sectionPager
-        page2_tabs.setupWithViewPager(favorite_viewpager)
+        binding.favoriteViewpager.adapter = sectionPager
+        binding.page2Tabs.setupWithViewPager(binding.favoriteViewpager)
 
         val movieLayout = LinearLayout(this)
         movieLayout.layoutParams = LinearLayout.LayoutParams(
@@ -42,8 +47,8 @@ class FavoriteActivity : AppCompatActivity() {
         tvshow.setCompoundDrawablesWithIntrinsicBounds(com.funcode.funmovie.R.drawable.ic_baseline_tv_24, 0, 0, 0)
         tvshow.compoundDrawablePadding = 16
         tvLayout.addView(tvshow)
-        val tab0 = page2_tabs.getTabAt(0)
-        val tab1 = page2_tabs.getTabAt(1)
+        val tab0 = binding.page2Tabs.getTabAt(0)
+        val tab1 = binding.page2Tabs.getTabAt(1)
 
         tab0?.customView = movieLayout
         tab1?.customView = tvLayout

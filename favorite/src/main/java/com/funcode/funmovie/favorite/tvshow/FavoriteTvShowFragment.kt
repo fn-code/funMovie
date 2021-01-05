@@ -16,11 +16,9 @@ import com.funcode.funmovie.favorite.adapter.FavoriteAdapter
 import com.funcode.funmovie.detail.DetailMovieActivity
 import com.funcode.funmovie.favorite.FavoriteFragmentCallback
 import com.funcode.funmovie.favorite.FavoriteViewModel
-import com.funcode.funmovie.favorite.R
+import com.funcode.funmovie.favorite.databinding.FragmentFilmFavoriteBinding
 import com.funcode.funmovie.favorite.di.DaggerAppComponent
 import dagger.hilt.android.EntryPointAccessors
-import kotlinx.android.synthetic.main.fragment_film_favorite.*
-import kotlinx.android.synthetic.main.message.*
 import javax.inject.Inject
 
 class FavoriteTvShowFragment: Fragment(), FavoriteFragmentCallback {
@@ -32,6 +30,8 @@ class FavoriteTvShowFragment: Fragment(), FavoriteFragmentCallback {
     }
 
     lateinit var favoriteAdapter : FavoriteAdapter
+    private var _binding: FragmentFilmFavoriteBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +39,9 @@ class FavoriteTvShowFragment: Fragment(), FavoriteFragmentCallback {
     ): View? {
         // Inflate the layout for this fragment
         favoriteAdapter = FavoriteAdapter(this)
-        return inflater.inflate(R.layout.fragment_film_favorite, container, false)
+        _binding = FragmentFilmFavoriteBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onAttach(context: Context) {
@@ -59,22 +61,22 @@ class FavoriteTvShowFragment: Fragment(), FavoriteFragmentCallback {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
             val favoriteAdapter = FavoriteAdapter(this)
-            progress_bar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
             favoriteViewModel.getTvShowFavorite().observe(viewLifecycleOwner, { film ->
                 if(film != null) {
-                    progress_bar.visibility = View.GONE
-                    rv_movie.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.rvMovie.visibility = View.VISIBLE
                     favoriteAdapter.setMovie(film)
                     favoriteAdapter.notifyDataSetChanged()
                 } else {
-                    rv_movie.visibility = View.GONE
-                    progress_bar.visibility = View.GONE
-                    message_view.visibility = View.VISIBLE
-                    tv_message.text = "Daftar Movie Favorite Yang Ingin Ditampilkan Kosong."
+                    binding.rvMovie.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                    binding.messageView.lnMessage.visibility = View.VISIBLE
+                    binding.messageView.tvMessage.text = "Daftar Movie Favorite Yang Ingin Ditampilkan Kosong."
                 }
             })
 
-            with(rv_movie) {
+            with(binding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = favoriteAdapter

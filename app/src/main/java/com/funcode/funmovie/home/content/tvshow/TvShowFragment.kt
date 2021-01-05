@@ -9,26 +9,29 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.funcode.core.domain.model.Film
-import com.funcode.funmovie.R
 import com.funcode.funmovie.adapter.MovieAdapter
+import com.funcode.funmovie.databinding.FragmentFilmBinding
 import com.funcode.funmovie.detail.DetailMovieActivity
 import com.funcode.funmovie.home.content.FilmFragmentCallback
 import com.funcode.funmovie.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_film.*
-import kotlinx.android.synthetic.main.message.*
 
 @AndroidEntryPoint
 class TvShowFragment : Fragment(),
     FilmFragmentCallback {
 
     private val homeViewModel: HomeViewModel by viewModels()
+
+    private var _binding: FragmentFilmBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_film, container, false)
+        _binding = FragmentFilmBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -36,22 +39,22 @@ class TvShowFragment : Fragment(),
         if (activity != null) {
 
             val tvshowAdapter = MovieAdapter(this)
-            progress_bar.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
             homeViewModel.getTvShow().observe(viewLifecycleOwner, { tvshow ->
                 if (tvshow != null) {
-                    progress_bar.visibility = View.GONE
-                    rv_movie.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.rvMovie.visibility = View.VISIBLE
                     tvshowAdapter.setMovie(tvshow.data)
                     tvshowAdapter.notifyDataSetChanged()
                 } else {
-                    progress_bar.visibility = View.GONE
-                    rv_movie.visibility = View.GONE
-                    message_view.visibility = View.VISIBLE
-                    tv_message.text = "Daftar Tv Show Yang Ingin Ditampilkan Kosong"
+                    binding.progressBar.visibility = View.GONE
+                    binding.rvMovie.visibility = View.GONE
+                    binding.messageView.lnMessage.visibility = View.VISIBLE
+                    binding.messageView.tvMessage.text = "Daftar Tv Show Yang Ingin Ditampilkan Kosong"
                 }
             })
 
-            with(rv_movie) {
+            with(binding.rvMovie) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = tvshowAdapter

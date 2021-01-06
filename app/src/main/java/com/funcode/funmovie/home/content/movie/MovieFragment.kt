@@ -31,8 +31,7 @@ class MovieFragment : Fragment(),
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentFilmBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

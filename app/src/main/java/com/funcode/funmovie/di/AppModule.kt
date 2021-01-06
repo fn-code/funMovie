@@ -11,6 +11,6 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 abstract class AppModule {
     @Binds
-    abstract fun provideHomeUseCase(homeInteractor: HomeInteractor): HomeUseCase
+    abstract fun provideHomeUseCase(homeIntegrator: HomeInteractor): HomeUseCase
 
 }

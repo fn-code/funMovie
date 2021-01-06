@@ -55,7 +55,7 @@
 
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.KotlinExtensions
--dontwarn retrofit2.KotlinExtensions$*
+#-dontwarn retrofit2.KotlinExtensions$*
 
 # With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
 # and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
@@ -64,19 +64,25 @@
 
 -dontwarn kotlinx.**
 
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
-##---------------Begin: proguard configuration for Glide ----------
-#-keep public class * implements com.bumptech.glide.module.GlideModule
-#-keep class * extends com.bumptech.glide.module.AppGlideModule {
-#<init>(...);
-#}
-#-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-#**[] $VALUES;
-#public *;
-#}
-#-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
-#*** rewind();
-#}
+#---------------Begin: proguard configuration for Glide ----------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+<init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+**[] $VALUES;
+public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+*** rewind();
+}
 
 # Uncomment for DexGuard only
 #-keepresourcexmlelements manifest/application/meta-data@value=GlideModule

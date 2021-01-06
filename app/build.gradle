@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-//    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
@@ -9,13 +8,13 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.funcode.funmovie"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -46,6 +45,7 @@ android {
     }
 
     lintOptions {
+        checkReleaseBuilds false
         abortOnError false
     }
     dynamicFeatures = [':favorite']
@@ -64,5 +64,6 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    testImplementation 'org.mockito:mockito-inline:3.4.0'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
 }

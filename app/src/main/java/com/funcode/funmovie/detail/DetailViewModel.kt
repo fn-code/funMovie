@@ -6,7 +6,7 @@ import com.funcode.core.domain.model.Film
 import com.funcode.core.domain.usecase.detail.DetailUseCase
 
 class DetailViewModel @ViewModelInject constructor(private val detailUseCase: DetailUseCase): ViewModel() {
-    val filmID = MutableLiveData<Int>()
+    private val filmID = MutableLiveData<Int>()
 
     fun setSelectedFilm(filmID: Int) {
         this.filmID.value = filmID

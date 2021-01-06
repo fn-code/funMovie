@@ -59,4 +59,5 @@ class HomeActivity : AppCompatActivity(){
             }
         }
     }
+
 }

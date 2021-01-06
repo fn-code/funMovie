@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.squareup.leakcanary.deobfuscation'
 }
 
 apply from: '../shared_dependencies.gradle'
@@ -56,6 +57,13 @@ kapt {
     useBuildCache = true
     javacOptions {
         option("-Xmaxerrs", 500)
+    }
+}
+
+leakCanary {
+    // LeakCanary needs to know which variants have obfuscation turned on
+    filterObfuscatedVariants { variant ->
+        variant.name == "debug"
     }
 }
 

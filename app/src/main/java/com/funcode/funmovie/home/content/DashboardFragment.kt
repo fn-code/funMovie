@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.funcode.funmovie.R
 import com.funcode.funmovie.databinding.FragmentDashboardBinding
 import com.funcode.funmovie.home.SectionPagerAdapter
@@ -18,24 +19,24 @@ class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
+    private var sectionPager: SectionPagerAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        sectionPager = SectionPagerAdapter(childFragmentManager)
+
+        binding.dashboardViewpager.adapter = sectionPager
+        binding.page1Tabs.setupWithViewPager(binding.dashboardViewpager)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         if (activity != null) {
-            val sectionPager = SectionPagerAdapter(childFragmentManager)
-
-            binding.dashboardViewpager.adapter = sectionPager
-            binding.page1Tabs.setupWithViewPager(binding.dashboardViewpager)
-
             val movieLayout = LinearLayout(activity)
             movieLayout.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -68,5 +69,11 @@ class DashboardFragment : Fragment() {
             tab1?.customView = tvLayout
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        sectionPager = null
     }
 }
